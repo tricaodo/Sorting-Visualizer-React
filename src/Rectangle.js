@@ -17,7 +17,7 @@ class Rectangle extends Component {
   }
 
   generateArray() {
-    const size = 30;
+    const size = 200;
     const newArr = [];
     for (let i = 0; i < size; i++) {
       const rand = Math.floor(Math.random() * 300) + 1;
@@ -26,49 +26,57 @@ class Rectangle extends Component {
     this.setState({ array: newArr });
   }
 
-  bubbleSort() {
+  async bubbleSort() {
     const { array } = this.state;
 
     for (let i = array.length; i > 0; i--) {
       for (let j = 0; j < i - 1; j++) {
-        const barEl = document.getElementsByClassName("single-rect");
+        const barEl = document.getElementsByClassName("single-bar");
         const bar1Style = barEl[j].style;
         const bar2Style = barEl[j + 1].style;
-        setTimeout(() => {
+        if (array[j] > array[j + 1]) {
           bar1Style.backgroundColor = PROCESSING_COLOR;
           bar2Style.backgroundColor = PROCESSING_COLOR;
-          if (array[j] > array[j + 1]) {
-            let temp = array[j];
-            array[j] = array[j + 1];
-            array[j + 1] = temp;
-            let height = bar1Style.height;
-            bar1Style.height = bar2Style.height;
-            bar2Style.height = height;
-          }
-        }, SPEED_MS * 2000);
-        bar1Style.backgroundColor = PRIMARY_COLOR;
-        bar2Style.backgroundColor = PRIMARY_COLOR;
+          await this.swap(array, j, j + 1);
+          let height = bar1Style.height;
+          bar1Style.height = bar2Style.height;
+          bar2Style.height = height;
+          bar1Style.backgroundColor = PRIMARY_COLOR;
+          bar2Style.backgroundColor = PRIMARY_COLOR;
+        }
       }
     }
-    this.setState({array: array});
+    this.setState({ array: array });
+  }
+  async swap(array, i, j) {
+    await this.sleep(1);
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+
+  sleep(time) {
+    return new Promise(function(resolve) {
+      setTimeout(resolve, time);
+    });
   }
 
   render() {
     const { array } = this.state;
     const rectEle = array.map((value, idx) => (
       <div
-        className="single-rect"
+        className="single-bar"
         style={{ height: `${value}px`, backgroundColor: `${PRIMARY_COLOR}` }}
         key={idx}
-      >
-        {value}
-      </div>
+      ></div>
     ));
     return (
-      <div className="Rectangle">
-        <div className="container">{rectEle}</div>
-        <button onClick={this.generateArray}>Generate Array</button>
-        <button onClick={this.bubbleSort}>Sort</button>
+      <div className="Rectangle-body">
+        <div className="Rectangle-container">
+          {rectEle}
+          <button onClick={this.generateArray}>Generate Array</button>
+          <button onClick={this.bubbleSort}>Sort</button>
+        </div>
       </div>
     );
   }
