@@ -34,22 +34,24 @@ class Rectangle extends Component {
         const barEl = document.getElementsByClassName("single-bar");
         const bar1Style = barEl[j].style;
         const bar2Style = barEl[j + 1].style;
+        bar1Style.backgroundColor = PROCESSING_COLOR;
+        bar2Style.backgroundColor = PROCESSING_COLOR;
         if (array[j] > array[j + 1]) {
-          bar1Style.backgroundColor = PROCESSING_COLOR;
-          bar2Style.backgroundColor = PROCESSING_COLOR;
+          bar1Style.backgroundColor = "green";
           await this.swap(array, j, j + 1);
           let height = bar1Style.height;
           bar1Style.height = bar2Style.height;
           bar2Style.height = height;
-          bar1Style.backgroundColor = PRIMARY_COLOR;
-          bar2Style.backgroundColor = PRIMARY_COLOR;
+
         }
+        bar1Style.backgroundColor = PRIMARY_COLOR;
+        bar2Style.backgroundColor = PRIMARY_COLOR;
       }
     }
     this.setState({ array: array });
   }
   async swap(array, i, j) {
-    await this.sleep(1);
+    await this.sleep();
     let temp = array[i];
     array[i] = array[j];
     array[j] = temp;

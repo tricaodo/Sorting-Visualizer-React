@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Rectangle from './Rectangle';
+import Visualizer from './Visualizer';
+// import Rectangle from './Rectangle';
 
 function App() {
   return (
     <div className="App">
-      <Rectangle />
+      {/* <Rectangle /> */}
+      <Visualizer />
     </div>
   );
 }
