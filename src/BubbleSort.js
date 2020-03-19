@@ -22,7 +22,7 @@ async function BubbleSort(array) {
   for(let i = 0; i < bars.length; i++){
     const bar1Style = bars[i].style;
     await sleep(10);
-    bar1Style.backgroundColor = "#b8e994";
+    // bar1Style.backgroundColor = "#b8e994";
   }
   // return array;
 }
