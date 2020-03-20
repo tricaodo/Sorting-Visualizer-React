@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Visualizer.css";
 import { generateArray, clearTimeout } from "./helper";
 import { BubbleSort } from "./BubbleSort";
+import { QuickSort } from "./QuickSort";
 
 class Visualizer extends Component {
   static defaultProps = {
@@ -25,13 +26,13 @@ class Visualizer extends Component {
   }
 
   handleSort() {
-    const { array } = this.state;
     // maybe switch
-    BubbleSort(array);
-    this.setState({sorted: true});
+    BubbleSort(this.state.array);
+    // QuickSort(this.state.array);
+    this.setState({ sorted: true });
   }
 
-  handleClear(){
+  handleClear() {
     clearTimeout();
   }
 
@@ -51,8 +52,12 @@ class Visualizer extends Component {
           <div className="Visualizer-bars">{bars}</div>
           <div className="Visualizer-buttons">
             <button onClick={this.handleGenerate}>Generate Array</button>
-            <button onClick={this.handleSort} disabled={sorted}>Sort</button>
-            <button onClick={this.handleClear} disabled={!sorted}>Clear</button>
+            <button onClick={this.handleSort} disabled={sorted}>
+              Sort
+            </button>
+            <button onClick={this.handleClear} disabled={!sorted}>
+              Clear
+            </button>
           </div>
         </div>
       </div>
