@@ -27,8 +27,12 @@ class Visualizer extends Component {
 
   handleSort() {
     // maybe switch
-    BubbleSort(this.state.array);
-    // QuickSort(this.state.array);
+    // BubbleSort(this.state.array);
+    // console.log(this.state.array);
+
+    const newArray = QuickSort(this.state.array);
+    console.log(newArray);
+
     this.setState({ sorted: true });
   }
 

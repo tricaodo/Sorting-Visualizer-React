@@ -8,8 +8,8 @@ function generateArray(size) {
   return array;
 }
 
-async function swap(array, i, j) {
-  timeID = await sleep(1);
+async function swap(array, i, j, delay) {
+  timeID = await sleep(delay);
   let temp = array[i];
   array[i] = array[j];
   array[j] = temp;

@@ -18,13 +18,6 @@ async function BubbleSort(array) {
       bar2Style.backgroundColor = "aquamarine";
     }
   }
-  
-  for(let i = 0; i < bars.length; i++){
-    const bar1Style = bars[i].style;
-    await sleep(10);
-    // bar1Style.backgroundColor = "#b8e994";
-  }
-  // return array;
 }
 
 export { BubbleSort };
