@@ -25,13 +25,14 @@ class Visualizer extends Component {
     this.setState({ array: generateArray(this.state.size), sorted: false });
   }
 
-  handleSort() {
+  async handleSort() {
     // maybe switch
     // BubbleSort(this.state.array);
     // console.log(this.state.array);
-
-    const newArray = QuickSort(this.state.array);
-    console.log(newArray);
+    const bars = document.getElementsByClassName("Visualizer-single-bar");
+    
+    const newArray = await QuickSort(bars);
+   
 
     this.setState({ sorted: true });
   }

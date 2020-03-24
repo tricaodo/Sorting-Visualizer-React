@@ -9,10 +9,11 @@ function generateArray(size) {
 }
 
 async function swap(array, i, j, delay) {
-  timeID = await sleep(delay);
-  let temp = array[i];
-  array[i] = array[j];
-  array[j] = temp;
+  // timeID = await sleep(delay);
+  let temp = array[i].style.height;
+  console.log(temp)
+  // array[i].style.height = array[j].style.height.split("px")[0];
+  // array[j].style.height = temp;
 }
 
 function sleep(time) {
